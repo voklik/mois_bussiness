@@ -21,7 +21,7 @@ public class Destination {
     @Column(name = "Name")
     private String name;
 
-    @Column(name = "actives")
+    @Column(name = "Actives")
     private boolean active;
 
     @Column(name = "Text")
