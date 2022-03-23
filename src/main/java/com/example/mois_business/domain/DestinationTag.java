@@ -10,26 +10,27 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "destinationcontact")
+@Table(name = "destinationtag")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class DestinationContact implements Serializable {
+public class DestinationTag implements Serializable {
 
     @Id
-    @Column(name = "IDDestinationContact")
+    @Column(name = "IDDestinationTag")
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @Column(name = "value")
-    String value;
-
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
-    @JoinColumn(name = "IDContact", referencedColumnName = "idContact")
-    Contact contact;
+    @JoinColumn(name = "IDTag", referencedColumnName = "IDTag")
+    Tag tag;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
     @JoinColumn(name = "IDDestination", referencedColumnName = "IDDestination")
     Destination destination;
+
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
+    @JoinColumn(name = "IDOffer", referencedColumnName = "IDOffer")
+    Offer offer;
 }

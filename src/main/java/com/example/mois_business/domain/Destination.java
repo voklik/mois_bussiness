@@ -1,41 +1,45 @@
 package com.example.mois_business.domain;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "destination")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Destination {
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class Destination implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "IDDestination")
-    private Long id;
+    Long id;
 
     @Column(name = "Name")
-    private String name;
+    String name;
 
     @Column(name = "actives")
-    private boolean active;
+    boolean active;
 
     @Column(name = "Text")
-    private String text;
+    String text;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
     @JoinColumn(name = "IDAddress", referencedColumnName = "IDAddress")
-    private Address address;
+    Address address;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
     @JoinColumn(name = "IDCountry", referencedColumnName = "IDCountry")
-    private Country country;
+    Country country;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
     @JoinColumn(name = "IDType", referencedColumnName = "IDDestinationType")
-    private DestinationType destinationType;
+    DestinationType destinationType;
 }
