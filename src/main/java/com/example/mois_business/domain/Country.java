@@ -1,29 +1,33 @@
 package com.example.mois_business.domain;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "country")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Country {
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class Country implements Serializable {
 
     @Id
     @Column(name = "IDCountry")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    Long id;
 
     @Column(name = "Country")
-    private String country;
+    String country;
 
     @Column(name = "Code")
-    private String code;
+    String code;
 
     @Column(name = "Actives")
-    private boolean active;
+    boolean active;
 }

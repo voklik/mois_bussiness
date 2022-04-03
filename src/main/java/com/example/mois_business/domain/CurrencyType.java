@@ -10,15 +10,15 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "destinationtype")
+@Table(name = "currencytype")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class DestinationType implements Serializable {
+public class CurrencyType implements Serializable {
 
     @Id
-    @Column(name = "IDDestinationType")
+    @Column(name = "IDCurrency")
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
@@ -26,5 +26,5 @@ public class DestinationType implements Serializable {
     String name;
 
     @Column(name = "Actives")
-    String active;
+    boolean active;
 }
