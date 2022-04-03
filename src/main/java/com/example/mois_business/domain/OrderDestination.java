@@ -37,7 +37,7 @@ public class OrderDestination implements Serializable {
     Offer offer;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
-    @JoinColumn(name = "IDOrderState", referencedColumnName = "IDOrderState")
+    @JoinColumn(name = "IDOrderState", referencedColumnName = "IDState")
     OrderState OrderState;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
@@ -45,7 +45,4 @@ public class OrderDestination implements Serializable {
     CurrencyType currencyType;
 
     //TODO id correctly towards userService
-    /*@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
-    @JoinColumn(name = "IDUser", referencedColumnName = "IDUser")
-    User user;*/
 }
