@@ -15,31 +15,29 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Destination implements Serializable {
+public class Destination {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "IDDestination")
     Long id;
 
-    @Column(name = "Name")
+    @Column(name = "destination_name")
     String name;
 
-    @Column(name = "actives")
+    @Column(name = "is_active")
     boolean active;
 
-    @Column(name = "Text")
-    String text;
+    String description;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
-    @JoinColumn(name = "IDAddress", referencedColumnName = "IDAddress")
+    @JoinColumn(name = "id_address")
     Address address;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
-    @JoinColumn(name = "IDCountry", referencedColumnName = "IDCountry")
+    @JoinColumn(name = "id_country")
     Country country;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
-    @JoinColumn(name = "IDType", referencedColumnName = "IDDestinationType")
+    @JoinColumn(name = "id_type")
     DestinationType destinationType;
 }

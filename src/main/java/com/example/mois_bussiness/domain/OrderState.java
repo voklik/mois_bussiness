@@ -10,21 +10,20 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "orderstate")
+@Table(name = "order_state")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class OrderState implements Serializable {
+public class OrderState {
 
     @Id
-    @Column(name = "IDState")
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @Column(name = "Name")
+    @Column(name = "order_state_name")
     String name;
 
-    @Column(name = "Actives")
+    @Column(name = "is_active")
     boolean active;
 }

@@ -11,38 +11,34 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "orderdestination")
+@Table(name = "order_destination")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class OrderDestination implements Serializable {
+public class OrderDestination {
 
     @Id
-    @Column(name = "IDOrder")
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @Column(name = "DateOrder")
+    @Column(name = "date_order")
     LocalDateTime dateOrder;
 
-    @Column(name = "Price")
     double price;
 
-    @Column(name = "discount")
     double discount;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
-    @JoinColumn(name = "IDOffer", referencedColumnName = "IDOffer")
+    @JoinColumn(name = "id_offer")
     Offer offer;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
-    @JoinColumn(name = "IDOrderState", referencedColumnName = "IDState")
+    @JoinColumn(name = "id_order_state")
     OrderState OrderState;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
-    @JoinColumn(name = "IDCurrency", referencedColumnName = "IDCurrency")
+    @JoinColumn(name = "id_currency")
     CurrencyType currencyType;
 
-    //TODO id correctly towards userService
 }

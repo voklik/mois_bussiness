@@ -16,56 +16,48 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Offer implements Serializable {
+public class Offer {
 
     @Id
-    @Column(name = "IDOffer")
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @Column(name = "DateAction")
+    @Column(name = "date_action")
     LocalDateTime dateAction;
 
-    @Column(name = "DateExpiration")
+    @Column(name = "date_expiration")
     LocalDateTime dateExpiration;
 
-    @Column(name = "Number")
-    int number;
+    int capacity;
 
-    @Column(name = "NumberLeft")
-    int numberLeft;
+    String description;
 
-    @Column(name = "Text")
-    String text;
-
-    @Column(name = "DayStart")
+    @Column(name = "day_start")
     LocalDateTime dayStart;
 
-    @Column(name = "DayEnd")
+    @Column(name = "day_end")
     LocalDateTime dayEnd;
 
-    @Column(name = "price")
     double price;
 
-    @Column(name = "Actives")
+    @Column(name = "is_active")
     boolean active;
 
-    @Column(name = "Discount")
     double discount;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
-    @JoinColumn(name = "IDDestination", referencedColumnName = "IDDestination")
+    @JoinColumn(name = "id_destination")
     Destination destination;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
-    @JoinColumn(name = "IDFood", referencedColumnName = "IDFood")
+    @JoinColumn(name = "id_food")
     FoodType foodType;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
-    @JoinColumn(name = "IDCurrency", referencedColumnName = "IDCurrency")
+    @JoinColumn(name = "id_currency")
     CurrencyType currencyType;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
-    @JoinColumn(name = "IDTransport", referencedColumnName = "IDTransport")
+    @JoinColumn(name = "id_transport")
     TransportType transportType;
 }

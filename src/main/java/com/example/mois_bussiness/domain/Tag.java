@@ -15,16 +15,15 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Tag implements Serializable {
+public class Tag {
 
     @Id
-    @Column(name = "IDTag")
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @Column(name = "Name")
+    @Column(name = "tag_name")
     String name;
 
-    @Column(name = "Actives")
+    @Column(name = "is_active")
     boolean active;
 }

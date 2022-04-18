@@ -10,36 +10,23 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
-@Entity
-@Table(name = "address")
 @Data
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "address")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Address implements Serializable {
+public class Address {
 
     @Id
-    @Column(name = "IDAddress")
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @Column(name = "City")
-    @NotBlank(message = "Město nesmí být prázdné.")
     String city;
 
-    @Column(name = "PostCode")
-    @NotBlank(message = "PSČ nesmí být prázdné.")
+    @Column(name = "post_code")
     String postCode;
 
-    @Column(name = "District")
-    @NotBlank(message = "Název okresu nesmí být prázdné.")
-    String district;
+    String street;
 
-    @Column(name = "StreetName")
-    @NotBlank(message = "Název ulice nesmí být prázdné.")
-    String streetName;
-
-    @Column(name = "StreetNumber")
-    @NotBlank(message = "Popisné číslo nesmí být prázdné.")
-    String streetNumber;
 }

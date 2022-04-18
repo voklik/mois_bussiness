@@ -15,19 +15,17 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Country implements Serializable {
+public class Country {
 
     @Id
-    @Column(name = "IDCountry")
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @Column(name = "Country")
     String country;
 
-    @Column(name = "Code")
+    @Column(name = "country_code")
     String code;
 
-    @Column(name = "Actives")
+    @Column(name = "is_active")
     boolean active;
 }

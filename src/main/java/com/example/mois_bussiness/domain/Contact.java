@@ -15,13 +15,12 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Contact implements Serializable {
+public class Contact {
 
     @Id
-    @Column(name = "idContact")
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @Column(name = "Name")
+    @Column(name = "contact_name")
     String name;
 }

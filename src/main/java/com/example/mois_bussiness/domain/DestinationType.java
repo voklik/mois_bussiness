@@ -10,21 +10,20 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "destinationtype")
+@Table(name = "destination_type")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class DestinationType implements Serializable {
+public class DestinationType {
 
     @Id
-    @Column(name = "IDDestinationType")
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @Column(name = "Name")
+    @Column(name = "destination_type_name")
     String name;
 
-    @Column(name = "Actives")
+    @Column(name = "is_active")
     String active;
 }

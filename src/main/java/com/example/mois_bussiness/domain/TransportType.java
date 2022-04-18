@@ -10,21 +10,20 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "transporttype")
+@Table(name = "transport_type")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class TransportType implements Serializable {
+public class TransportType {
 
     @Id
-    @Column(name = "IDTransport")
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @Column(name = "Name")
+    @Column(name = "transport_type_name")
     String name;
 
-    @Column(name = "Actives")
+    @Column(name = "is_active")
     boolean active;
 }
