@@ -13,7 +13,14 @@ public class DestinationDTO {
 
     String description;
 
+    String city;
+
+    String postCode;
+
+    String street;
+
     Long countryId;
 
     Long destinationTypeId;
+
 }
