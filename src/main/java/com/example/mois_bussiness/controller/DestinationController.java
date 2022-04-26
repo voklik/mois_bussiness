@@ -2,7 +2,6 @@ package com.example.mois_bussiness.controller;
 
 import com.example.mois_bussiness.domain.Address;
 import com.example.mois_bussiness.domain.Destination;
-import com.example.mois_bussiness.domain.DestinationType;
 import com.example.mois_bussiness.dto.DestinationDTO;
 import com.example.mois_bussiness.service.AddressService;
 import com.example.mois_bussiness.service.DestinationService;
@@ -37,14 +36,13 @@ public class DestinationController {
                 destinationDTO.getCity(),
                 destinationDTO.getStreet());
 
-        Destination destination = destinationService.createDestination(
+        /*Destination destination =*/ destinationService.createDestination(
                 destinationDTO.getName(),
                 destinationDTO.getDescription(),
+                destinationDTO.isActive(),
+                destinationDTO.getCountryId(),
                 destinationDTO.getDestinationTypeId(),
                 address);
-
-
-
 
         return ResponseEntity.ok("Destination created"/*new MessageResponse("User registered successfully")*/);
     }
