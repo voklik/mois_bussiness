@@ -36,7 +36,7 @@ public class DestinationController {
                 destinationDTO.getCity(),
                 destinationDTO.getStreet());
 
-        /*Destination destination =*/ destinationService.createDestination(
+        destinationService.createDestination(
                 destinationDTO.getName(),
                 destinationDTO.getDescription(),
                 destinationDTO.isActive(),

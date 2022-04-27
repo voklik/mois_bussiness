@@ -10,4 +10,6 @@ public interface DestinationRepository extends JpaRepository<Destination, Long> 
     List<Destination> findAll();
 
     Destination save(Destination destination);
+
+    Destination getById(Long aLong);
 }

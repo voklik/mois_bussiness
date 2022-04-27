@@ -18,8 +18,12 @@ public class DestinationService {
     private final DestinationTypeService destinationTypeService;
     private final CountryService countryService;
 
-    public List<Destination> getAllUsers() {
+    public List<Destination> getAllDestinations() {
         return destinationRepository.findAll();
+    }
+
+    public Destination getDestination(Long id) {
+        return destinationRepository.getById(id);
     }
 
     public Destination createDestination(String name, String description, boolean isActive, Long countryId, Long destinationTypeId, Address address) {
@@ -29,17 +33,15 @@ public class DestinationService {
         destination.setDescription(description);
         destination.setAddress(address);
         Country country = countryService.getCountry(countryId);
+        destination.setCountry(country);
         DestinationType destinationType = destinationTypeService.getDestinationType(destinationTypeId);
         destination.setDestinationType(destinationType);
 
-        //try {
-           return destinationRepository.save(destination);
-        //} catch (Exception e) {
+        try {
+            destinationRepository.save(destination);
+        } catch (Exception e) {
+        }
 
-        //}
-
-        //return destination;
-
-
+        return destination;
     }
 }

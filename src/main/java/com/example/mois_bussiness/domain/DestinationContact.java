@@ -27,7 +27,7 @@ public class DestinationContact {
     @JoinColumn(name = "id_contact")
     Contact contact;
 
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
     @JoinColumn(name = "id_destination")
     Destination destination;
 }
