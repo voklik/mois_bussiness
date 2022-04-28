@@ -24,6 +24,7 @@ public class DestinationType {
     @Column(name = "destination_type_name")
     String name;
 
+    //TODO předělat na bit v db
     @Column(name = "is_active")
-    String active;
+    boolean active;
 }
