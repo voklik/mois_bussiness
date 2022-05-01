@@ -35,10 +35,13 @@ public class OrderDestination {
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
     @JoinColumn(name = "id_order_state")
-    OrderState OrderState;
+    OrderState orderState;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
     @JoinColumn(name = "id_currency")
     CurrencyType currencyType;
+
+    @Column(name = "id_user")
+    Long userId;
 
 }

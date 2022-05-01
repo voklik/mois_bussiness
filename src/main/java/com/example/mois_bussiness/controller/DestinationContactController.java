@@ -27,6 +27,7 @@ public class DestinationContactController {
         if (bindingResult.hasErrors()) {
         }
 
+        //TODO logika přes mapper
         //TODO kontakt se bude přidávat k destinaci, její ID se předá do kontaktu
         Destination destination = destinationService.getDestination(/*id*/);
 
