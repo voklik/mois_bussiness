@@ -1,8 +1,6 @@
 package com.example.mois_bussiness.controller;
 
-import com.example.mois_bussiness.domain.Offer;
 import com.example.mois_bussiness.domain.OrderDestination;
-import com.example.mois_bussiness.dto.OfferDTO;
 import com.example.mois_bussiness.dto.OrderDestinationDTO;
 import com.example.mois_bussiness.service.OrderDestinationService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +18,7 @@ public class OrderDestinationController {
 
     private final OrderDestinationService orderDestinationService;
 
+    //TODO logika přes mapper a page
     @GetMapping("/getAllOrders")
     public ResponseEntity<List<OrderDestination>> getAllOrders() {
         List<OrderDestination> orderDestinations = orderDestinationService.getAllOrders();
@@ -32,7 +31,15 @@ public class OrderDestinationController {
             //return responseErrorValidator.getErrorResponse(bindingResult);
         }
 
-        //TODO logika přes mapper
+        orderDestinationService.createOrder(
+                orderDestinationDTO.getDateOrder(),
+                orderDestinationDTO.getDiscount(),
+                orderDestinationDTO.getPrice(),
+                orderDestinationDTO.getCurrencyType().getId(),
+                orderDestinationDTO.getOrderState().getId(),
+                orderDestinationDTO.getOffer().getId(),
+                orderDestinationDTO.getUserId()
+        );
 
         return ResponseEntity.ok("Order created"/*new MessageResponse("User registered successfully")*/);
     }

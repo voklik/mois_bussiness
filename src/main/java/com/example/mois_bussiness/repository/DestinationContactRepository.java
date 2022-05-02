@@ -13,8 +13,6 @@ public interface DestinationContactRepository extends JpaRepository<DestinationC
 
     DestinationContact save(DestinationContact destinationContact);
 
-    List<DestinationContact> findAll(DestinationContact destinationContact);
-
-    DestinationContact findByNameEquals(String name);
+    List<DestinationContact> findAll();
 
 }

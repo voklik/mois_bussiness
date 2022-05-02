@@ -1,8 +1,6 @@
 package com.example.mois_bussiness.controller;
 
-import com.example.mois_bussiness.domain.Destination;
 import com.example.mois_bussiness.domain.Offer;
-import com.example.mois_bussiness.dto.DestinationDTO;
 import com.example.mois_bussiness.dto.OfferDTO;
 import com.example.mois_bussiness.service.OfferService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +18,7 @@ public class OfferController {
 
     private final OfferService offerService;
 
+    //TODO mapper a page logika
     @GetMapping("/getAllOffers")
     public ResponseEntity<List<Offer>> getAllOffers() {
         List<Offer> offers = offerService.getAllOffers();
@@ -32,7 +31,21 @@ public class OfferController {
             //return responseErrorValidator.getErrorResponse(bindingResult);
         }
 
-        //TODO logika přes mapper
+        offerService.createOffer(
+                offerDTO.getCapacity(),
+                offerDTO.getDateAction(),
+                offerDTO.getDateExpiration(),
+                offerDTO.getDayEnd(),
+                offerDTO.getDayStart(),
+                offerDTO.getDescription(),
+                offerDTO.isActive(),
+                offerDTO.getDiscount(),
+                offerDTO.getPrice(),
+                offerDTO.getCurrencyType().getId(),
+                offerDTO.getFoodType().getId(),
+                offerDTO.getDestination().getId(),
+                offerDTO.getTransportType().getId()
+        );
 
         return ResponseEntity.ok("Offer created"/*new MessageResponse("User registered successfully")*/);
     }

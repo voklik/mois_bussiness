@@ -13,14 +13,10 @@ public class DestinationDTO {
 
     String description;
 
-    String city;
+    AddressDTO address;
 
-    String postCode;
+    CountryDTO country;
 
-    String street;
-
-    Long countryId;
-
-    Long destinationTypeId;
+    DestinationTypeDTO destinationType;
 
 }

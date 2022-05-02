@@ -1,6 +1,5 @@
 package com.example.mois_bussiness.dto;
 
-import com.example.mois_bussiness.domain.Offer;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -16,11 +15,11 @@ public class OrderDestinationDTO {
 
     double discount;
 
-    Offer offer;
+    OfferDTO offer;
 
-    Long orderStateId;
+    OrderStateDTO orderState;
 
-    Long currencyTypeId;
+    CurrencyTypeDTO currencyType;
 
     Long userId;
 }

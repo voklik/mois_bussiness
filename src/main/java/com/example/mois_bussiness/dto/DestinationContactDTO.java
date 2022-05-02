@@ -1,5 +1,6 @@
 package com.example.mois_bussiness.dto;
 
+import com.example.mois_bussiness.domain.Destination;
 import lombok.Data;
 
 @Data
@@ -9,7 +10,7 @@ public class DestinationContactDTO {
 
      String value;
 
-     Long ContactId;
+     ContactDTO contact;
 
-     Long destinationId;
+     DestinationDTO destination;
 }

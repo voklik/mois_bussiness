@@ -1,6 +1,5 @@
 package com.example.mois_bussiness.controller;
 
-import com.example.mois_bussiness.domain.Destination;
 import com.example.mois_bussiness.dto.DestinationContactDTO;
 import com.example.mois_bussiness.service.DestinationContactService;
 import com.example.mois_bussiness.service.DestinationService;
@@ -27,14 +26,12 @@ public class DestinationContactController {
         if (bindingResult.hasErrors()) {
         }
 
-        //TODO logika přes mapper
-        //TODO kontakt se bude přidávat k destinaci, její ID se předá do kontaktu
-        Destination destination = destinationService.getDestination(/*id*/);
+        //TODO uvidíme, jak to bude fachat na FE - kdyžtak do ID v service dávat přes celý objekt Destinace
 
         destinationContactService.createDestinationContact(
                 destinationContactDTO.getValue(),
-                destinationContactDTO.getContactId(),
-                destinationContactDTO.getDestinationId(destination)
+                destinationContactDTO.getContact().getId(),
+                destinationContactDTO.getDestination().getId()
         );
 
         return ResponseEntity.ok("Destination contact created");

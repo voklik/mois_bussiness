@@ -27,11 +27,11 @@ public class OfferDTO {
 
     double discount;
 
-    Long destinationId;
+    DestinationDTO destination;
 
-    Long foodTypeId;
+    FoodTypeDTO foodType;
 
-    Long currencyTypeId;
+    CurrencyTypeDTO currencyType;
 
-    Long transportTypeId;
+    TransportTypeDTO transportType;
 }
