@@ -5,16 +5,13 @@ import com.example.mois_bussiness.domain.Destination;
 import com.example.mois_bussiness.dto.DestinationDTO;
 import com.example.mois_bussiness.service.AddressService;
 import com.example.mois_bussiness.service.DestinationService;
-import com.example.mois_bussiness.service.DestinationTypeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,14 +19,21 @@ import javax.validation.Valid;
 public class DestinationController {
 
     private final DestinationService destinationService;
-    private final DestinationTypeService destinationTypeService;
     private final AddressService addressService;
+
+    @GetMapping("/getAllDestinations")
+    public ResponseEntity<List<Destination>> getAllDestinations() {
+        List<Destination> users = destinationService.getAllDestinations();
+        return ResponseEntity.ok(users);
+    }
 
     @PostMapping("/create")
     public ResponseEntity<Object> createDestination(@RequestBody @Valid DestinationDTO destinationDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             //return responseErrorValidator.getErrorResponse(bindingResult);
         }
+
+        //TODO logika přes mapper
 
         Address address = addressService.createAddress(
                 destinationDTO.getPostCode(),
