@@ -5,6 +5,8 @@ import com.example.mois_bussiness.repository.FoodTypeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class FoodTypeService {
@@ -13,5 +15,9 @@ public class FoodTypeService {
 
     public FoodType getFoodType(Long id){
         return foodTypeRepository.getById(id);
+    }
+
+    public List<FoodType> getAllFoods() {
+        return foodTypeRepository.findAll();
     }
 }

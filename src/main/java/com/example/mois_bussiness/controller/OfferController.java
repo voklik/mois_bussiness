@@ -4,12 +4,15 @@ import com.example.mois_bussiness.domain.Offer;
 import com.example.mois_bussiness.dto.OfferDTO;
 import com.example.mois_bussiness.service.OfferService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,11 +21,23 @@ public class OfferController {
 
     private final OfferService offerService;
 
-    //TODO mapper a page logika
-    @GetMapping("/getAllOffers")
-    public ResponseEntity<List<Offer>> getAllOffers() {
-        List<Offer> offers = offerService.getAllOffers();
-        return ResponseEntity.ok(offers);
+    @GetMapping({"/", "/{page}/{size}"})
+    public ResponseEntity<Page<OfferDTO>> getAllOffers(@PathVariable(required = false) Integer page, @PathVariable(required = false) Integer size) {
+        if (page == null && size == null) {
+            page = 1;
+            size = 15;
+        }
+        return new ResponseEntity<>(offerService.getAllOffers(
+                PageRequest.of(
+                        page, size, Sort.by("dateExpiration").ascending()
+                )
+        ), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Offer> getOffer(@PathVariable Long id) {
+        Offer offer = offerService.getOffer(id);
+        return ResponseEntity.ok(offer);
     }
 
     @PostMapping("/create")

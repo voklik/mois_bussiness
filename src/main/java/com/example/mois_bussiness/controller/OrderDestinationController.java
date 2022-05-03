@@ -4,6 +4,10 @@ import com.example.mois_bussiness.domain.OrderDestination;
 import com.example.mois_bussiness.dto.OrderDestinationDTO;
 import com.example.mois_bussiness.service.OrderDestinationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -18,11 +22,29 @@ public class OrderDestinationController {
 
     private final OrderDestinationService orderDestinationService;
 
-    //TODO logika přes mapper a page
-    @GetMapping("/getAllOrders")
-    public ResponseEntity<List<OrderDestination>> getAllOrders() {
-        List<OrderDestination> orderDestinations = orderDestinationService.getAllOrders();
-        return ResponseEntity.ok(orderDestinations);
+    @GetMapping({"/", "/{page}/{size}"})
+    public ResponseEntity<Page<OrderDestinationDTO>> getAllOrders(@PathVariable(required = false) Integer page, @PathVariable(required = false) Integer size) {
+        if (page == null && size == null) {
+            page = 1;
+            size = 15;
+        }
+        return new ResponseEntity<>(orderDestinationService.getAllOrders(
+                PageRequest.of(
+                        page, size, Sort.by("dateOrder").ascending()
+                )
+        ), HttpStatus.OK);
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<OrderDestination>> getDestinationByUser(@PathVariable Long userId) {
+        List<OrderDestination> orderDestinationByUser = orderDestinationService.getOrdersByUserId(userId);
+        return ResponseEntity.ok(orderDestinationByUser);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<OrderDestination> getDestination(@PathVariable Long id) {
+        OrderDestination orderDestination = orderDestinationService.getOrderDestination(id);
+        return ResponseEntity.ok(orderDestination);
     }
 
     @PostMapping("/create")

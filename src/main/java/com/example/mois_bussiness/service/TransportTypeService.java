@@ -5,6 +5,8 @@ import com.example.mois_bussiness.repository.TransportTypeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class TransportTypeService {
@@ -13,5 +15,9 @@ public class TransportTypeService {
 
     public TransportType getTransportType(Long id) {
         return transportTypeRepository.getById(id);
+    }
+
+    public List<TransportType> getAllTransportTypes() {
+        return transportTypeRepository.findAll();
     }
 }

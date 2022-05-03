@@ -5,6 +5,8 @@ import com.example.mois_bussiness.repository.ContactRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ContactService {
@@ -15,7 +17,7 @@ public class ContactService {
         return contactRepository.getById(id);
     }
 
-    public Contact getContactByName(String name) {
-        return contactRepository.findByNameEquals(name);
+    public List<Contact> getAllContacts() {
+        return contactRepository.findAll();
     }
 }

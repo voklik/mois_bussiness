@@ -12,11 +12,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import sun.security.krb5.internal.crypto.Des;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -41,8 +39,7 @@ public class DestinationService {
     }
 
     public Destination getDestination(Long id) {
-        Destination destination = destinationRepository.getById(id);
-        return destination;
+        return destinationRepository.getById(id);
     }
 
     public Destination createDestination(String name, String description, boolean isActive, Long countryId, Long destinationTypeId, Address address) {
