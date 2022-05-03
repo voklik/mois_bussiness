@@ -25,8 +25,8 @@ public class DestinationContactService {
     private final DestinationService destinationService;
     private final DestinationContactMapper destinationContactMapper;
 
-    public DestinationContact getDestinationContact(Long id) {
-        return destinationContactRepository.getById(id);
+    public DestinationContact getDestinationContact(Long destinationId) {
+        return destinationContactRepository.getById(destinationId);
     }
 
     public Page<DestinationContactDTO> getAllDestinationContacts(Pageable pageable) {

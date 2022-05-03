@@ -34,9 +34,9 @@ public class DestinationContactController {
         ), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<DestinationContact> getDestinationContact(@PathVariable Long id) {
-        DestinationContact destinationContact = destinationContactService.getDestinationContact(id);
+    @GetMapping("/{destinationId}")
+    public ResponseEntity<DestinationContact> getDestinationContact(@PathVariable Long destinationId) {
+        DestinationContact destinationContact = destinationContactService.getDestinationContact(destinationId);
         return ResponseEntity.ok(destinationContact);
     }
 

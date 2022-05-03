@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface DestinationContactRepository extends JpaRepository<DestinationContact, Long> {
 
-    DestinationContact getById(Long aLong);
+    DestinationContact getByDestinationId(Long id);
 
     DestinationContact save(DestinationContact destinationContact);
 
