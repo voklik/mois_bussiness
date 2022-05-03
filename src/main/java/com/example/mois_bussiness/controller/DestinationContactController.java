@@ -4,14 +4,12 @@ import com.example.mois_bussiness.domain.DestinationContact;
 import com.example.mois_bussiness.dto.DestinationContactDTO;
 import com.example.mois_bussiness.service.DestinationContactService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,18 +18,10 @@ public class DestinationContactController {
 
     private final DestinationContactService destinationContactService;
 
-    @GetMapping({"/", "/{page}/{size}"})
-    public ResponseEntity<Page<DestinationContactDTO>> getAllDestinations(@PathVariable(required = false) Integer page,
-                                                                          @PathVariable(required = false) Integer size) {
-        if (page == null && size == null) {
-            page = 1;
-            size = 15;
-        }
-        return new ResponseEntity<>(destinationContactService.getAllDestinationContacts(
-                PageRequest.of(
-                        page, size
-                )
-        ), HttpStatus.OK);
+    @GetMapping("/")
+    public ResponseEntity<List<DestinationContact>> getAllDestinationContacts() {
+        List<DestinationContact> destinationContacts = destinationContactService.getAllDestinationContacts();
+        return ResponseEntity.ok(destinationContacts);
     }
 
     @GetMapping("/{destinationId}")
