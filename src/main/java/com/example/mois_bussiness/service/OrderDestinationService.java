@@ -48,11 +48,10 @@ public class OrderDestinationService {
 
 
 
-    public OrderDestination createOrder(LocalDateTime dateOrder, double discount, double price,
+    public OrderDestination createOrder(LocalDateTime dateOrder, double price,
                              Long currencyTypeId, Long orderStateId, Long offerId, Long userId) {
         OrderDestination orderDestination = new OrderDestination();
         orderDestination.setDateOrder(dateOrder);
-        orderDestination.setDiscount(discount);
         orderDestination.setPrice(price);
         CurrencyType currencyType= currencyTypeService.getCurrencyType(currencyTypeId);
         orderDestination.setCurrencyType(currencyType);

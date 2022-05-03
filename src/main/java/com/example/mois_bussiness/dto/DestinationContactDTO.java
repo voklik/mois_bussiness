@@ -1,15 +1,18 @@
 package com.example.mois_bussiness.dto;
 
-import com.example.mois_bussiness.domain.Destination;
 import lombok.Data;
+
+import javax.validation.constraints.NotBlank;
 
 @Data
 public class DestinationContactDTO {
 
      Long id;
 
+     @NotBlank(message = "Zadejte mail/číslo")
      String value;
 
+     @NotBlank(message = "Zvolte typ kontaktu")
      ContactDTO contact;
 
      DestinationDTO destination;

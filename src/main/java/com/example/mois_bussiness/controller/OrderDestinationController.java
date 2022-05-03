@@ -55,7 +55,6 @@ public class OrderDestinationController {
 
         orderDestinationService.createOrder(
                 orderDestinationDTO.getDateOrder(),
-                orderDestinationDTO.getDiscount(),
                 orderDestinationDTO.getPrice(),
                 orderDestinationDTO.getCurrencyType().getId(),
                 orderDestinationDTO.getOrderState().getId(),

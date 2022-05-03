@@ -2,14 +2,19 @@ package com.example.mois_bussiness.dto;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
+
 @Data
 public class AddressDTO {
 
     Long id;
 
-    String city;
+    @NotBlank(message = "Město je povinné")
+    private String city;
 
-    String postCode;
+    @NotBlank(message = "PSČ je povinné")
+    private String postCode;
 
-    String street;
+    @NotBlank(message = "Ulice je povinná")
+    private String street;
 }

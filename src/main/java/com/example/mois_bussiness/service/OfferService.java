@@ -45,7 +45,7 @@ public class OfferService {
     }
 
     public Offer createOffer(int capacity, LocalDateTime dateAction, LocalDateTime dateExpiration, LocalDateTime dayEnd,
-                             LocalDateTime dayStart, String description, boolean isActive, double discount, double price,
+                             LocalDateTime dayStart, String description, boolean isActive, double price,
                              Long currencyTypeId, Long foodTypeId, Long destinationId, Long transportTypeId) {
         Offer offer = new Offer();
         offer.setCapacity(capacity);
@@ -55,7 +55,6 @@ public class OfferService {
         offer.setDayStart(dayStart);
         offer.setDayEnd(dayEnd);
         offer.setDescription(description);
-        offer.setDiscount(discount);
         offer.setPrice(price);
         CurrencyType currencyType = currencyTypeService.getCurrencyType(currencyTypeId);
         offer.setCurrencyType(currencyType);

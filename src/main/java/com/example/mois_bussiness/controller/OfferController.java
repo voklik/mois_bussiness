@@ -54,7 +54,6 @@ public class OfferController {
                 offerDTO.getDayStart(),
                 offerDTO.getDescription(),
                 offerDTO.isActive(),
-                offerDTO.getDiscount(),
                 offerDTO.getPrice(),
                 offerDTO.getCurrencyType().getId(),
                 offerDTO.getFoodType().getId(),
