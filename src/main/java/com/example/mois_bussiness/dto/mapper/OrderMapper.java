@@ -16,7 +16,6 @@ public class OrderMapper {
         orderDestinationDTO.setUserId(orderDestination.getUserId());
         orderDestinationDTO.setDateOrder(orderDestination.getDateOrder());
         orderDestinationDTO.setPrice(orderDestination.getPrice());
-        orderDestinationDTO.setDiscount(orderDestination.getDiscount());
 
         CurrencyTypeDTO currencyTypeDTO = new CurrencyTypeDTO();
         currencyTypeDTO.setId(orderDestination.getCurrencyType().getId());

@@ -13,8 +13,6 @@ public class OrderDestinationDTO {
 
     double price;
 
-    double discount;
-
     OfferDTO offer;
 
     OrderStateDTO orderState;
