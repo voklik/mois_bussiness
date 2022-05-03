@@ -43,8 +43,6 @@ public class Offer {
     @Column(name = "is_active")
     boolean active;
 
-    double discount;
-
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
     @JoinColumn(name = "id_destination")
     Destination destination;

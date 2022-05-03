@@ -27,8 +27,6 @@ public class OrderDestination {
 
     double price;
 
-    double discount;
-
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
     @JoinColumn(name = "id_offer")
     Offer offer;

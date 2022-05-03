@@ -17,7 +17,6 @@ public class OfferMapper {
         offerDTO.setDateExpiration(offer.getDateExpiration());
         offerDTO.setDayStart(offer.getDayStart());
         offerDTO.setDayEnd(offer.getDayEnd());
-        offerDTO.setDiscount(offer.getDiscount());
         offerDTO.setDescription(offer.getDescription());
         offerDTO.setPrice(offer.getPrice());
 
