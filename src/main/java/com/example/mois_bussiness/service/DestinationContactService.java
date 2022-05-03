@@ -17,23 +17,20 @@ public class DestinationContactService {
     private final ContactService contactService;
     private final DestinationService destinationService;
 
-    public DestinationContact getDestinationContact(Long id) {
-        return destinationContactRepository.getById(id);
-    }
-
-    public DestinationContact getDestinationContactByName(String name) {
-        return destinationContactRepository.findByNameEquals(name);
+    public DestinationContact getDestinationContact(Long destinationId) {
+        return destinationContactRepository.getById(destinationId);
     }
 
     public List<DestinationContact> getAllDestinationContacts() {
         return destinationContactRepository.findAll();
     }
 
-    public DestinationContact createDestinationContact(String value, Long contactId, Destination destination) {
+    public DestinationContact createDestinationContact(String value, Long contactId, Long destinationId) {
         DestinationContact destinationContact = new DestinationContact();
         destinationContact.setValue(value);
         Contact contact = contactService.getContact(contactId);
         destinationContact.setContact(contact);
+        Destination destination = destinationService.getDestination(destinationId);
         destinationContact.setDestination(destination);
 
         try {

@@ -1,6 +1,5 @@
 package com.example.mois_bussiness.service;
 
-import com.example.mois_bussiness.domain.CurrencyType;
 import com.example.mois_bussiness.domain.OrderState;
 import com.example.mois_bussiness.repository.OrderStateRepository;
 import lombok.RequiredArgsConstructor;

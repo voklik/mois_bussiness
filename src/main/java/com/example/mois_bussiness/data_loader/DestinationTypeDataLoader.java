@@ -19,15 +19,15 @@ public class DestinationTypeDataLoader implements CommandLineRunner {
 
     private void loadDestinationTypeData() {
         if (destinationTypeRepository.count() == 0) {
-            DestinationType destinationType1 = new DestinationType( 1l, "Hotel", true);
-            DestinationType destinationType2 = new DestinationType( 2l, "Penzion", true);
-            DestinationType destinationType3 = new DestinationType( 3l, "Zájezd", true);
-            DestinationType destinationType4 = new DestinationType( 4l, "Zábavní park", true);
-            DestinationType destinationType5 = new DestinationType( 5l, "Bar", true);
-            DestinationType destinationType6 = new DestinationType( 6l, "Divadlo", true);
-            DestinationType destinationType7 = new DestinationType( 7l, "Událost", true);
-            DestinationType destinationType8 = new DestinationType( 8l, "Speciální akce", true);
-            DestinationType destinationType9 = new DestinationType( 9l, "Vzdělávací akce", true);
+            DestinationType destinationType1 = new DestinationType( 1l, "Hotel");
+            DestinationType destinationType2 = new DestinationType( 2l, "Penzion");
+            DestinationType destinationType3 = new DestinationType( 3l, "Zájezd");
+            DestinationType destinationType4 = new DestinationType( 4l, "Zábavní park");
+            DestinationType destinationType5 = new DestinationType( 5l, "Bar");
+            DestinationType destinationType6 = new DestinationType( 6l, "Divadlo");
+            DestinationType destinationType7 = new DestinationType( 7l, "Událost");
+            DestinationType destinationType8 = new DestinationType( 8l, "Speciální akce");
+            DestinationType destinationType9 = new DestinationType( 9l, "Vzdělávací akce");
 
             destinationTypeRepository.save(destinationType1);
             destinationTypeRepository.save(destinationType2);
