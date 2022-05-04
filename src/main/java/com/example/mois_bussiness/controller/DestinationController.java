@@ -32,7 +32,7 @@ public class DestinationController {
         }
         return new ResponseEntity<>(destinationService.getAllDestinations(
                 PageRequest.of(
-                        page, size, Sort.by("destinationName").ascending()
+                        page, size, Sort.by("name").ascending()
                 )
         ), HttpStatus.OK);
     }

@@ -3,6 +3,7 @@ package com.example.mois_bussiness.controller;
 import com.example.mois_bussiness.domain.OrderDestination;
 import com.example.mois_bussiness.dto.OrderDestinationDTO;
 import com.example.mois_bussiness.service.OrderDestinationService;
+import com.example.mois_bussiness.util.OrderDestinationPDFExporter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,7 +13,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -63,5 +69,24 @@ public class OrderDestinationController {
         );
 
         return ResponseEntity.ok("Order created"/*new MessageResponse("User registered successfully")*/);
+    }
+
+    @GetMapping("/exportPDF")
+    public void exportToPDF(HttpServletResponse response) throws IOException {
+        response.setContentType("application/pdf");
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormat.format(new Date());
+
+        String headerKey = "Content-disposition";
+        String headerValue = "attachment; filename=myOffer_" + currentDateTime +  ".pdf";
+
+        response.setHeader(headerKey, headerValue);
+
+        OrderDestinationDTO orderDestinationDTO = new OrderDestinationDTO();
+        OrderDestination orderDestination = orderDestinationService.getOrderDestination(orderDestinationDTO.getId());
+
+        OrderDestinationPDFExporter exporter = new OrderDestinationPDFExporter(orderDestination);
+        exporter.export(response);
     }
 }
