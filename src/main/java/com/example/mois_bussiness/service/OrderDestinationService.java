@@ -3,6 +3,7 @@ package com.example.mois_bussiness.service;
 import com.example.mois_bussiness.domain.*;
 import com.example.mois_bussiness.dto.OrderDestinationDTO;
 import com.example.mois_bussiness.dto.mapper.OrderMapper;
+import com.example.mois_bussiness.exception.InternalErrorException;
 import com.example.mois_bussiness.repository.OrderDestinationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -46,8 +47,6 @@ public class OrderDestinationService {
         return orderDestinationRepository.getById(id);
     }
 
-
-
     public OrderDestination createOrder(LocalDateTime dateOrder, double price,
                              Long currencyTypeId, Long orderStateId, Long offerId, Long userId) {
         OrderDestination orderDestination = new OrderDestination();
@@ -64,6 +63,7 @@ public class OrderDestinationService {
         try {
             orderDestinationRepository.save(orderDestination);
         } catch (Exception e) {
+            throw new InternalErrorException("Internal Error");
         }
 
         return orderDestination;

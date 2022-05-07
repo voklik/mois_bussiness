@@ -1,9 +1,12 @@
 package com.example.mois_bussiness.controller;
 
 import com.example.mois_bussiness.domain.Address;
+import com.example.mois_bussiness.domain.Contact;
 import com.example.mois_bussiness.domain.Destination;
+import com.example.mois_bussiness.domain.util.ErrorUtil;
 import com.example.mois_bussiness.dto.DestinationDTO;
 import com.example.mois_bussiness.service.AddressService;
+import com.example.mois_bussiness.service.ContactService;
 import com.example.mois_bussiness.service.DestinationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -15,6 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,6 +26,7 @@ import javax.validation.Valid;
 public class DestinationController {
 
     private final DestinationService destinationService;
+    private final ContactService contactService;
     private final AddressService addressService;
 
     @GetMapping({"/", "/{page}/{size}"})
@@ -39,6 +44,7 @@ public class DestinationController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Destination> getDestination(@PathVariable Long id) {
+
         Destination destination = destinationService.getDestination(id);
         return ResponseEntity.ok(destination);
     }
@@ -46,22 +52,20 @@ public class DestinationController {
     @PostMapping("/create")
     public ResponseEntity<Object> createDestination(@RequestBody @Valid DestinationDTO destinationDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            //return responseErrorValidator.getErrorResponse(bindingResult);
+            return ErrorUtil.getErrorResponse(bindingResult);
         }
 
-        Address address = addressService.createAddress(
-                destinationDTO.getAddress().getPostCode(),
-                destinationDTO.getAddress().getCity(),
-                destinationDTO.getAddress().getStreet());
+        Address address = addressService.createAddress(destinationDTO.getAddress());
 
-        destinationService.createDestination(
-                destinationDTO.getName(),
-                destinationDTO.getDescription(),
-                destinationDTO.isActive(),
-                destinationDTO.getCountry().getId(),
-                destinationDTO.getDestinationType().getId(),
-                address);
+        Destination destination = destinationService.createDestination(destinationDTO, address);
 
-        return ResponseEntity.ok("Destination created"/*new MessageResponse("User registered successfully")*/);
+        return ResponseEntity.ok(destination);
+    }
+
+    @GetMapping("/{id}/contacts}")
+    public ResponseEntity<List<Contact>> getDestinationContacts(@PathVariable long id) {
+
+        List<Contact> contact = contactService.getContactsByDestination(id);
+        return ResponseEntity.ok(contact);
     }
 }

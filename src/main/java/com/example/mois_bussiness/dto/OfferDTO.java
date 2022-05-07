@@ -1,5 +1,8 @@
 package com.example.mois_bussiness.dto;
 
+import com.example.mois_bussiness.domain.CurrencyType;
+import com.example.mois_bussiness.domain.FoodType;
+import com.example.mois_bussiness.domain.TransportType;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
@@ -37,11 +40,11 @@ public class OfferDTO {
     DestinationDTO destination;
 
     @NotBlank(message = "Zvolte typ jídla")
-    FoodTypeDTO foodType;
+    FoodType foodType;
 
     @NotBlank(message = "Zvolte typ měny")
-    CurrencyTypeDTO currencyType;
+    CurrencyType currencyType;
 
     @NotBlank(message = "Zvolte typ cesty")
-    TransportTypeDTO transportType;
+    TransportType transportType;
 }

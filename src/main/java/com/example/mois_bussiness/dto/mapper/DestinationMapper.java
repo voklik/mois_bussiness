@@ -1,10 +1,10 @@
 package com.example.mois_bussiness.dto.mapper;
 
+import com.example.mois_bussiness.domain.Country;
 import com.example.mois_bussiness.domain.Destination;
+import com.example.mois_bussiness.domain.DestinationType;
 import com.example.mois_bussiness.dto.AddressDTO;
-import com.example.mois_bussiness.dto.CountryDTO;
 import com.example.mois_bussiness.dto.DestinationDTO;
-import com.example.mois_bussiness.dto.DestinationTypeDTO;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -24,13 +24,13 @@ public class DestinationMapper {
 
         destinationDTO.setAddress(address);
 
-        CountryDTO country = new CountryDTO();
+        Country country = new Country();
         country.setId(destination.getCountry().getId());
         country.setCountry(destination.getCountry().getCountry());
 
         destinationDTO.setCountry(country);
 
-        DestinationTypeDTO destinationType = new DestinationTypeDTO();
+        DestinationType destinationType = new DestinationType();
         destinationType.setId(destination.getDestinationType().getId());
         destinationType.setName(destination.getDestinationType().getName());
 

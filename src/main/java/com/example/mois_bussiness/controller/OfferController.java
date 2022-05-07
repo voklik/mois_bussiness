@@ -1,6 +1,7 @@
 package com.example.mois_bussiness.controller;
 
 import com.example.mois_bussiness.domain.Offer;
+import com.example.mois_bussiness.domain.util.ErrorUtil;
 import com.example.mois_bussiness.dto.OfferDTO;
 import com.example.mois_bussiness.service.OfferService;
 import lombok.RequiredArgsConstructor;
@@ -21,16 +22,19 @@ public class OfferController {
 
     private final OfferService offerService;
 
-    @GetMapping({"/", "/{page}/{size}"})
-    public ResponseEntity<Page<OfferDTO>> getAllOffers(@PathVariable(required = false) Integer page, @PathVariable(required = false) Integer size) {
-        if (page == null && size == null) {
-            page = 1;
-            size = 15;
-        }
+    @GetMapping(path = "", params = {"page", "size", "sortBy", "sortAsc"})
+    public ResponseEntity<Page<OfferDTO>> getAllOffers(
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "15") int size,
+            @RequestParam(name = "sortBy", defaultValue = "dateExpiration") String sortBy,
+            @RequestParam(name = "sortAsc", defaultValue = "true") boolean sortAsc) {
+
+        Sort sort = Sort.by(sortBy).ascending();
+        if (!sortAsc)
+            sort = sort.descending();
+
         return new ResponseEntity<>(offerService.getAllOffers(
-                PageRequest.of(
-                        page, size, Sort.by("dateExpiration").ascending()
-                )
+                PageRequest.of(page, size, sort)
         ), HttpStatus.OK);
     }
 
@@ -43,24 +47,11 @@ public class OfferController {
     @PostMapping("/create")
     public ResponseEntity<Object> createOffer(@RequestBody @Valid OfferDTO offerDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            //return responseErrorValidator.getErrorResponse(bindingResult);
+            return ErrorUtil.getErrorResponse(bindingResult);
         }
 
-        offerService.createOffer(
-                offerDTO.getCapacity(),
-                offerDTO.getDateAction(),
-                offerDTO.getDateExpiration(),
-                offerDTO.getDayEnd(),
-                offerDTO.getDayStart(),
-                offerDTO.getDescription(),
-                offerDTO.isActive(),
-                offerDTO.getPrice(),
-                offerDTO.getCurrencyType().getId(),
-                offerDTO.getFoodType().getId(),
-                offerDTO.getDestination().getId(),
-                offerDTO.getTransportType().getId()
-        );
+        Offer offer = offerService.createOffer(offerDTO);
 
-        return ResponseEntity.ok("Offer created"/*new MessageResponse("User registered successfully")*/);
+        return ResponseEntity.ok(offer);
     }
 }

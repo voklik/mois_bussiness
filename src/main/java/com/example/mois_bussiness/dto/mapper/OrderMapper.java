@@ -1,10 +1,10 @@
 package com.example.mois_bussiness.dto.mapper;
 
+import com.example.mois_bussiness.domain.CurrencyType;
 import com.example.mois_bussiness.domain.OrderDestination;
-import com.example.mois_bussiness.dto.CurrencyTypeDTO;
+import com.example.mois_bussiness.domain.OrderState;
 import com.example.mois_bussiness.dto.OfferDTO;
 import com.example.mois_bussiness.dto.OrderDestinationDTO;
-import com.example.mois_bussiness.dto.OrderStateDTO;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,17 +17,17 @@ public class OrderMapper {
         orderDestinationDTO.setDateOrder(orderDestination.getDateOrder());
         orderDestinationDTO.setPrice(orderDestination.getPrice());
 
-        CurrencyTypeDTO currencyTypeDTO = new CurrencyTypeDTO();
-        currencyTypeDTO.setId(orderDestination.getCurrencyType().getId());
-        currencyTypeDTO.setName(orderDestination.getCurrencyType().getName());
+        CurrencyType currencyType = new CurrencyType();
+        currencyType.setId(orderDestination.getCurrencyType().getId());
+        currencyType.setName(orderDestination.getCurrencyType().getName());
 
-        orderDestinationDTO.setCurrencyType(currencyTypeDTO);
+        orderDestinationDTO.setCurrencyType(currencyType);
 
-        OrderStateDTO orderStateDTO = new OrderStateDTO();
-        orderStateDTO.setId(orderDestination.getOrderState().getId());
-        orderStateDTO.setName(orderDestination.getOrderState().getName());
+        OrderState orderState = new OrderState();
+        orderState.setId(orderDestination.getOrderState().getId());
+        orderState.setName(orderDestination.getOrderState().getName());
 
-        orderDestinationDTO.setOrderState(orderStateDTO);
+        orderDestinationDTO.setOrderState(orderState);
 
         OfferDTO offerDTO = new OfferDTO();
         offerDTO.setId(orderDestination.getOffer().getId());

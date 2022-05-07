@@ -19,13 +19,13 @@ public class CurrencyController {
     private final CurrencyTypeService currencyTypeService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<CurrencyType> getCountry(@PathVariable Long id) {
+    public ResponseEntity<CurrencyType> getCurrency(@PathVariable Long id) {
         CurrencyType currencyType = currencyTypeService.getCurrencyType(id);
         return ResponseEntity.ok(currencyType);
     }
 
-    @GetMapping("/")
-    public ResponseEntity<List<CurrencyType>> getAllContacts() {
+    @GetMapping("")
+    public ResponseEntity<List<CurrencyType>> getAllCurrencies() {
         List<CurrencyType> currencyTypes = currencyTypeService.getAllCurrencies();
         return ResponseEntity.ok(currencyTypes);
     }

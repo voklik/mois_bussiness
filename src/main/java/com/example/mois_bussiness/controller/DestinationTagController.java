@@ -1,15 +1,14 @@
 package com.example.mois_bussiness.controller;
 
+import com.example.mois_bussiness.domain.Destination;
 import com.example.mois_bussiness.domain.DestinationTag;
 import com.example.mois_bussiness.service.DestinationTagService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,15 +17,17 @@ public class DestinationTagController {
 
     private final DestinationTagService destinationTagService;
 
-    @GetMapping("/{}")
-    public ResponseEntity<List<DestinationTag>> getAllDestinationTags() {
-        List<DestinationTag> destinationTags = destinationTagService.getAllDestinationTags();
-        return ResponseEntity.ok(destinationTags);
+    @GetMapping(path = "", params = {"page", "size", "tag1name", "tag2name"})
+    public ResponseEntity<Page<Destination>> getAllDestinationTags(
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "15") int size,
+            @RequestParam(name = "tag1name", defaultValue = "") String name1,
+            @RequestParam(name = "tag2name", defaultValue = "") String name2) {
+
+        return new ResponseEntity<>(destinationTagService.getDestinationByTags(
+                PageRequest.of(page, size)
+        , name1, name2), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<DestinationTag> getDestinationTag(@PathVariable Long id) {
-        DestinationTag destinationTag = destinationTagService.getDestinationTag(id);
-        return ResponseEntity.ok(destinationTag);
-    }
+
 }

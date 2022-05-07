@@ -24,7 +24,7 @@ public class TagController {
         return ResponseEntity.ok(tag);
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<List<Tag>> getAllTags() {
         List<Tag> tags = tagService.getAllTags();
         return ResponseEntity.ok(tags);

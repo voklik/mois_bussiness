@@ -1,6 +1,7 @@
 package com.example.mois_bussiness.controller;
 
 import com.example.mois_bussiness.domain.OrderDestination;
+import com.example.mois_bussiness.domain.util.ErrorUtil;
 import com.example.mois_bussiness.dto.OrderDestinationDTO;
 import com.example.mois_bussiness.service.OrderDestinationService;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
 
@@ -23,15 +23,13 @@ public class OrderDestinationController {
     private final OrderDestinationService orderDestinationService;
 
     @GetMapping({"/", "/{page}/{size}"})
-    public ResponseEntity<Page<OrderDestinationDTO>> getAllOrders(@PathVariable(required = false) Integer page, @PathVariable(required = false) Integer size) {
-        if (page == null && size == null) {
-            page = 1;
-            size = 15;
-        }
+    public ResponseEntity<Page<OrderDestinationDTO>> getAllOrders(
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "15") int size) {
+
         return new ResponseEntity<>(orderDestinationService.getAllOrders(
                 PageRequest.of(
-                        page, size, Sort.by("dateOrder").ascending()
-                )
+                        page, size)
         ), HttpStatus.OK);
     }
 
@@ -50,10 +48,10 @@ public class OrderDestinationController {
     @PostMapping("/create")
     public ResponseEntity<Object> createOrder(@RequestBody @Valid OrderDestinationDTO orderDestinationDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            //return responseErrorValidator.getErrorResponse(bindingResult);
+            return ErrorUtil.getErrorResponse(bindingResult);
         }
 
-        orderDestinationService.createOrder(
+        OrderDestination orderDestination = orderDestinationService.createOrder(
                 orderDestinationDTO.getDateOrder(),
                 orderDestinationDTO.getPrice(),
                 orderDestinationDTO.getCurrencyType().getId(),
@@ -62,6 +60,6 @@ public class OrderDestinationController {
                 orderDestinationDTO.getUserId()
         );
 
-        return ResponseEntity.ok("Order created"/*new MessageResponse("User registered successfully")*/);
+        return ResponseEntity.ok(orderDestination);
     }
 }

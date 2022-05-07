@@ -1,6 +1,7 @@
 package com.example.mois_bussiness.controller;
 
 import com.example.mois_bussiness.domain.DestinationContact;
+import com.example.mois_bussiness.domain.util.ErrorUtil;
 import com.example.mois_bussiness.dto.DestinationContactDTO;
 import com.example.mois_bussiness.service.DestinationContactService;
 import lombok.RequiredArgsConstructor;
@@ -33,16 +34,11 @@ public class DestinationContactController {
     @PostMapping("/create")
     public ResponseEntity<Object> createDestinationContact(@RequestBody @Valid DestinationContactDTO destinationContactDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
+            ErrorUtil.getErrorResponse(bindingResult);
         }
 
-        //TODO uvidíme, jak to bude fachat na FE - kdyžtak do ID v service dávat přes celý objekt Destinace
+        DestinationContact destinationContact = destinationContactService.createDestinationContact(destinationContactDTO);
 
-        destinationContactService.createDestinationContact(
-                destinationContactDTO.getValue(),
-                destinationContactDTO.getContact().getId(),
-                destinationContactDTO.getDestination().getId()
-        );
-
-        return ResponseEntity.ok("Destination contact created");
+        return ResponseEntity.ok(destinationContact);
     }
 }

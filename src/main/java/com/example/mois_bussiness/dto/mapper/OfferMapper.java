@@ -1,6 +1,9 @@
 package com.example.mois_bussiness.dto.mapper;
 
+import com.example.mois_bussiness.domain.CurrencyType;
+import com.example.mois_bussiness.domain.FoodType;
 import com.example.mois_bussiness.domain.Offer;
+import com.example.mois_bussiness.domain.TransportType;
 import com.example.mois_bussiness.dto.*;
 import org.springframework.stereotype.Component;
 
@@ -20,23 +23,23 @@ public class OfferMapper {
         offerDTO.setDescription(offer.getDescription());
         offerDTO.setPrice(offer.getPrice());
 
-        CurrencyTypeDTO currencyTypeDTO = new CurrencyTypeDTO();
-        currencyTypeDTO.setId(offer.getCurrencyType().getId());
-        currencyTypeDTO.setName(offer.getCurrencyType().getName());
+        CurrencyType currencyType = new CurrencyType();
+        currencyType.setId(offer.getCurrencyType().getId());
+        currencyType.setName(offer.getCurrencyType().getName());
 
-        offerDTO.setCurrencyType(currencyTypeDTO);
+        offerDTO.setCurrencyType(currencyType);
 
-        FoodTypeDTO foodTypeDTO = new FoodTypeDTO();
-        foodTypeDTO.setId(offer.getFoodType().getId());
-        foodTypeDTO.setName(offer.getFoodType().getName());
+        FoodType foodType = new FoodType();
+        foodType.setId(offer.getFoodType().getId());
+        foodType.setName(offer.getFoodType().getName());
 
-        offerDTO.setFoodType(foodTypeDTO);
+        offerDTO.setFoodType(foodType);
 
-        TransportTypeDTO transportTypeDTO = new TransportTypeDTO();
-        transportTypeDTO.setId(offer.getTransportType().getId());
-        transportTypeDTO.setName(offer.getTransportType().getName());
+        TransportType transportType = new TransportType();
+        transportType.setId(offer.getTransportType().getId());
+        transportType.setName(offer.getTransportType().getName());
 
-        offerDTO.setTransportType(transportTypeDTO);
+        offerDTO.setTransportType(transportType);
 
         DestinationDTO destinationDTO = new DestinationDTO();
         destinationDTO.setId(offer.getDestination().getId());

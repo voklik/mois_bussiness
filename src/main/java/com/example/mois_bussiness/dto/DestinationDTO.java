@@ -1,7 +1,8 @@
 package com.example.mois_bussiness.dto;
 
+import com.example.mois_bussiness.domain.Country;
+import com.example.mois_bussiness.domain.DestinationType;
 import lombok.Data;
-
 import javax.validation.constraints.NotBlank;
 
 @Data
@@ -20,9 +21,9 @@ public class DestinationDTO {
     AddressDTO address;
 
     @NotBlank(message = "Zvolte zemi")
-    CountryDTO country;
+    Country country;
 
     @NotBlank(message = "Zvolte typ destinace")
-    DestinationTypeDTO destinationType;
+    DestinationType destinationType;
 
 }

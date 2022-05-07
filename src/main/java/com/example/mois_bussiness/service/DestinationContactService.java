@@ -3,6 +3,8 @@ package com.example.mois_bussiness.service;
 import com.example.mois_bussiness.domain.Contact;
 import com.example.mois_bussiness.domain.Destination;
 import com.example.mois_bussiness.domain.DestinationContact;
+import com.example.mois_bussiness.dto.DestinationContactDTO;
+import com.example.mois_bussiness.exception.InternalErrorException;
 import com.example.mois_bussiness.repository.DestinationContactRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,18 +27,16 @@ public class DestinationContactService {
         return destinationContactRepository.findAll();
     }
 
-    public DestinationContact createDestinationContact(String value, Long contactId, Long destinationId) {
+    public DestinationContact createDestinationContact(DestinationContactDTO destinationContactDTO) {
         DestinationContact destinationContact = new DestinationContact();
-        destinationContact.setValue(value);
-        Contact contact = contactService.getContact(contactId);
-        destinationContact.setContact(contact);
-        Destination destination = destinationService.getDestination(destinationId);
+        destinationContact.setValue(destinationContactDTO.getValue());
+        Destination destination = destinationService.getDestination(destinationContactDTO.getDestination().getId());
         destinationContact.setDestination(destination);
 
         try {
             destinationContactRepository.save(destinationContact);
         } catch (Exception e) {
-
+            throw new InternalErrorException("Internal Error");
         }
         return destinationContact;
     }

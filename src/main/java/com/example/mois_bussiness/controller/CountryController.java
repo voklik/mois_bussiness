@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 
 @RestController
@@ -17,12 +16,6 @@ import java.util.List;
 public class CountryController {
 
     private final CountryService countryService;
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Country> getCountry(@PathVariable Long id) {
-        Country country = countryService.getCountry(id);
-        return ResponseEntity.ok(country);
-    }
 
     @GetMapping("")
     public ResponseEntity<List<Country>> getAllCountries() {
