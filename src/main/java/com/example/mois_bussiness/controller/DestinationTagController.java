@@ -1,7 +1,6 @@
 package com.example.mois_bussiness.controller;
 
 import com.example.mois_bussiness.domain.Destination;
-import com.example.mois_bussiness.domain.DestinationTag;
 import com.example.mois_bussiness.service.DestinationTagService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
